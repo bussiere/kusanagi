@@ -1,0 +1,73 @@
+{% include "Menu.html" %}
+{{ boite }}
+{% if cmd %}
+{% ifequal cmd "ajout" %}
+<FORM METHOD='GET' ACTION="../Modification">
+{% ifequal cat "agent" %}
+Rajout d'agent :<br>
+<INPUT type="hidden" value="agent" name="cat">
+{% endifequal %}
+{% ifequal cat "intervenant" %}
+Rajout d'Intervenant :<br>
+<INPUT type="hidden" value="intervenant" name="cat">
+{% endifequal %}
+<table>
+
+<tr>
+<td>nom</td>
+<td><INPUT type="text" value="" name="nom"></td>
+</tr>
+<tr>
+<td>prenom</td>
+<td><INPUT type="text" value="" name="prenom"></td>
+</tr>
+<tr>
+<td>tel</td>
+<td><INPUT type="text" value="" name="tel"></td>
+</tr>
+<tr>
+<td>email</td>
+<td><INPUT type="text" value="" name="email"></td>
+</tr>
+{% ifequal cat "agent" %}
+<tr>
+<td>service</td>
+<td><SELECT name="service">
+<OPTION VALUE=""></OPTION>
+{% for b in boite %}
+<OPTION VALUE="{{ b }}">{{ b }}</OPTION>
+{% endfor %}
+</select>
+</td>
+</tr>
+<tr>
+<td>Ajout service</td>
+<td><INPUT type="text" value="" name="ajservice"></td>
+</tr>
+{% endifequal %}
+{% ifequal cat "intervenant" %}
+<tr>
+<td>Entreprise</td>
+<td><SELECT name="entreprise">
+<OPTION VALUE=""></OPTION>
+{% for b in boite %}
+<OPTION VALUE="{{ b }}">{{ b }}</OPTION>
+{% endfor %}
+
+
+</select>
+</td>
+</tr>
+<td>Ajout Entreprise</td>
+<td><INPUT type="text" value="" name="ajentreprise"></td>
+</tr>
+{% endifequal %}
+<TR>
+	<TD COLSPAN=2>
+	<INPUT type="submit" value="Envoyer">
+	</TD>
+</TR>
+</table>
+</form>
+{% endifequal %}
+{% endif %}
